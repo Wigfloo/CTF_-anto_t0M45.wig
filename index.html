@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTF - [REDACTED] Access</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Fondo Animado -->
+    <canvas id="matrix"></canvas>
+
+    <!-- Terminal Central -->
+    <main class="terminal">
+        <header class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <p>root@ctf-server:~# status_check</p>
+        </header>
+        
+        <section class="content">
+            <h1 class="glitch" data-text="SISTEMA COMPROMETIDO">SISTEMA COMPROMETIDO</h1>
+            <p class="typing">Bienvenido, recluta. Los flags están ocultos en los rincones más oscuros del servidor.</p>
+            
+            <div class="input-area">
+                <label for="flag-input">> Ingrese Flag:</label>
+                <input type="text" id="flag-input" placeholder="..." autocomplete="off">
+                <button onclick="checkFlag()">ENVIAR</button>
+            </div>
+            
+            <div id="response-msg"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

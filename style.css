@@ -1,0 +1,58 @@
+body {
+    background-color: black;
+    color: #00ff41; /* Verde Matrix clásico */
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.terminal {
+    background: rgba(0, 20, 0, 0.9);
+    border: 2px solid #00ff41;
+    box-shadow: 0 0 20px #00ff41;
+    width: 80%;
+    max-width: 700px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.glitch {
+    font-size: 2rem;
+    position: relative;
+    color: white;
+    text-shadow: 2px 2px #00ff41, -2px -2px red;
+}
+
+input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #00ff41;
+    color: white;
+    padding: 5px;
+    outline: none;
+    width: 60%;
+}
+
+button {
+    background: #00ff41;
+    color: black;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: white;
+}
