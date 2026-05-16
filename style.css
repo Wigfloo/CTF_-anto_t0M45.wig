@@ -1,9 +1,9 @@
 body {
-    background-color: black;
-    color: #00ff41; /* Verde Matrix clásico */
+    background-color: #000500;
+    color: #00FF41;
     font-family: 'Courier New', Courier, monospace;
     margin: 0;
-    overflow: hidden;
+    overflow: hidden; /* Para que el canvas de Matrix ocupe todo */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,47 +12,72 @@ body {
 
 #matrix {
     position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
+    top: 0; left: 0;
+    z-index: -2;
+    opacity: 0.3; /* Para que no distraiga de los retos */
+}
+
+/* Efecto de monitor antiguo CRT */
+.crt-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+    z-index: 10;
 }
 
 .terminal {
-    background: rgba(0, 20, 0, 0.9);
-    border: 2px solid #00ff41;
-    box-shadow: 0 0 20px #00ff41;
-    width: 80%;
-    max-width: 700px;
+    background: rgba(0, 10, 0, 0.85);
+    border: 1px solid #00FF41;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+    width: 90%;
+    max-width: 800px;
     padding: 20px;
-    border-radius: 5px;
+    z-index: 5;
 }
 
-.glitch {
-    font-size: 2rem;
-    position: relative;
-    color: white;
-    text-shadow: 2px 2px #00ff41, -2px -2px red;
+header {
+    border-bottom: 1px solid #00FF41;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
+
+.dot { height: 10px; width: 10px; border-radius: 50%; }
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
 
 input {
     background: transparent;
     border: none;
-    border-bottom: 1px solid #00ff41;
-    color: white;
+    border-bottom: 1px solid #00FF41;
+    color: #00FF41;
+    font-family: inherit;
     padding: 5px;
     outline: none;
-    width: 60%;
 }
 
 button {
-    background: #00ff41;
-    color: black;
+    background: #00FF41;
+    color: #000;
     border: none;
     padding: 5px 15px;
     cursor: pointer;
     font-weight: bold;
 }
 
-button:hover {
-    background: white;
+.glitch {
+    text-transform: uppercase;
+    animation: glitch 1s linear infinite;
+}
+
+@keyframes glitch {
+    2%, 64% { transform: translate(2px, 0) skew(0deg); }
+    4%, 60% { transform: translate(-2px, 0) skew(0deg); }
+    62% { transform: translate(0, 0) skew(5deg); }
 }

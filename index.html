@@ -1,38 +1,55 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CTF - [REDACTED] Access</title>
+    <title>THE NEXUS - Core Access</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Lightweight SHA-256 Library for the frontend -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
-    <!-- Fondo Animado -->
     <canvas id="matrix"></canvas>
+    <div class="crt-overlay"></div>
 
-    <!-- Terminal Central -->
     <main class="terminal">
-        <header class="terminal-header">
+
+            <header>
             <span class="dot red"></span>
             <span class="dot yellow"></span>
             <span class="dot green"></span>
-            <p>root@ctf-server:~# status_check</p>
+            <p>root@nexus-core:~# <span id="current-path">/level_01</span></p>
         </header>
         
-        <section class="content">
-            <h1 class="glitch" data-text="SISTEMA COMPROMETIDO">SISTEMA COMPROMETIDO</h1>
-            <p class="typing">Bienvenido, recluta. Los flags están ocultos en los rincones más oscuros del servidor.</p>
-            
-            <div class="input-area">
-                <label for="flag-input">> Ingrese Flag:</label>
-                <input type="text" id="flag-input" placeholder="..." autocomplete="off">
-                <button onclick="checkFlag()">ENVIAR</button>
+        <!-- Level content will be injected here -->
+        <section id="terminal-content" class="content"></section>
+        
+        <div class="input-area">
+            <label for="flag-input">> Submit Flag:</label>
+            <input type="text" id="flag-input" placeholder="USTA{...}" autocomplete="off">
+            <button onclick="verifyFlag()">EXECUTE</button>
+        </div>
+        <div id="system-msg"></div>
+<!-- borrar -->
+        <div id="system-msg"></div>
+
+        <div class="dev-panel" style="margin-top: 25px; border-top: 1px dashed #555; padding-top: 10px; text-align: center;">
+            <p style="color: #ff003c; font-size: 0.8rem; margin: 5px 0;">[ DEV MODE: QUICK JUMP ]</p>
+            <button onclick="goToLevel(1)">Lvl 1</button>
+            <button onclick="goToLevel(2)">Lvl 2</button>
+            <button onclick="goToLevel(3)">Lvl 3</button>
+            <button onclick="goToLevel(4)">Lvl 4</button>
+            <button onclick="goToLevel(5)">Lvl 5</button>
             </div>
-            
-            <div id="response-msg"></div>
-        </section>
+    </main>
+        
     </main>
 
     <script src="script.js"></script>
+
+    <!-- DEBUG LOG: Temporary flag for testing environment. 
+         TODO: Remove before final deployment to USTA servers Fuck Israel.
+         FLAG_01: USTA{W3LC0M3_T0_TH3_N3XUS} -->
+
 </body>
 </html>
