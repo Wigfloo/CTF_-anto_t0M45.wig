@@ -9,9 +9,9 @@ const gameState = {
     // Si alguien abre este archivo para hacer trampa, solo verá este texto sin sentido.
     hashes: [
         "6c5b693d8a674305c6d78a969e22fd058683018b21349d144a7cb979ad91abba", // Hash del Nivel 1
-        "b39acd52541fa011f4051d6e4486629f37c095dc3d6adf390d5b7767fe8dab1f", // Hash del Nivel 2
+        "b238b74501b3a082ed8342554e9d7bf27a2ced6454514abb7f6f369c1651185e", // Hash del Nivel 2
         "8d2689a6a2c6ff84cd61dbb8be258a4c0ad7e690666d0ae6d636d2cb9e875b65", // Hash del Nivel 3
-        "1994e3f9c60270a102a2276ea48ab8bf3c9a5b9d3ddc75c0b151ab64fb27d870", // Hash del Nivel 4 
+        "171205345b3e23ef8f32831d974143f01bbc81eeb7ce3834ecfa548deb739da6", // Hash del Nivel 4 
         "25144928d11a1b28ecdc54eb2ccdbaa57d7e59c251cc430d5a8071455b96d383", // Hash del Nivel 5 
         "5e713b05e5272bad5c7bb7d6ff69969da4777a1de79224dd8bfa86ceca0871d2"  // trama
     ]
@@ -59,16 +59,24 @@ const levelsData = {
     
     `,
 
-    4: `<h1 class="glitch" data-text="PHASE 04: PRIVILEGE ESCALATION">PHASE 04: PRIVILEGE ESCALATION</h1>
-        <p>You have penetrated the inner network, but your current session lacks authorization to view the vault.</p>
-        <p><strong>MISSION:</strong> The server identifies your identity using a local browser Cookie. Find it, hijack the session, and elevate your privileges to <strong>"admin"</strong>.</p>
-        <p><strong>TASK:</strong> Inspect your browser storage, modify your token identity, and click the button below to query the secure database.</p>
+    4: `
+        <h1 class="glitch" data-text="PHASE 04: LOGIC INJECTION">PHASE 04: LOGIC INJECTION</h1>
+        <p>El cortafuegos del núcleo bloquea las peticiones estándar basadas en tu rango de usuario.</p>
         
-        <button onclick="checkCookiePrivilege()" style="background: transparent; color: #ff003c; border: 1px solid #ff003c; padding: 5px 15px; cursor: pointer; margin-top: 15px;">
-            [ QUERY SECURE VAULT ]
+        <div id="auth-terminal" data-clearance="guest" style="border: 1px solid #555; padding: 15px; margin: 15px 0; background: rgba(0,0,0,0.4);">
+            <p style="margin: 0; color: #aaa;">[ SYSTEM IDENTITY LOCK ]</p>
+            <p style="margin: 5px 0;">ID de Sesión: <span style="color: #ffff00;">STU-9923</span></p>
+            <p style="margin: 0;">Rango de Seguridad Actual: <strong style="color: #ff003c;">GUEST (Invitado)</strong></p>
+        </div>
+
+        <p><strong>MISSION:</strong> Usa el Inspector de Elementos (F12) para examinar la caja de identidad de arriba. Modifica tu atributo de seguridad local para engañar al sistema y elevarte a <strong>"admin"</strong>.</p>
+        
+        <button onclick="checkDOMPrivilege()" style="background: transparent; color: #00FF41; border: 1px solid #00FF41; padding: 8px 15px; cursor: pointer; font-family: monospace; font-weight: bold;">
+            [ INYECTAR ORDEN DE ACCESO ]
         </button>
-        <div id="vault-output" style="margin-top: 15px; color: #ff003c; font-weight: bold;"></div>`,
-    
+        
+        <div id="dom-status" style="margin-top: 15px; font-weight: bold;"></div>
+    `,
         
     5: `<h1 class="glitch" data-text="PHASE 05: ENCRYPTED TRANSMISSION">PHASE 05: ENCRYPTED TRANSMISSION</h1>
         <p>You have triggered an internal alarm. The system is broadcasting an encrypted emergency beacon to the main core.</p>
@@ -310,6 +318,29 @@ function checkCookiePrivilege() {
     }
 }
 
+// ==========================================
+// LÓGICA DEL NIVEL 4: MANIPULACIÓN DEL DOM
+// ==========================================
+function checkDOMPrivilege() {
+    const element = document.getElementById('auth-terminal');
+    const status = document.getElementById('dom-status');
+    
+    // Leemos en tiempo real qué tiene escrito el atributo 'data-clearance'
+    const currentRole = element.getAttribute('data-clearance');
+    
+    if (currentRole === "admin") {
+        status.style.color = "#00FF41";
+        status.innerHTML = `
+            <p>[ ESCALACIÓN DE PRIVILEGIOS EXITOSA ]</p>
+            <p style="color: white; border: 1px dashed #00FF41; padding: 10px; display: inline-block; background: #050505;">
+                FLAG_04: USTA(D0M_M4N1PUL4T0R)
+            </p>
+        `;
+    } else {
+        status.style.color = "#ff003c";
+        status.innerHTML = `[ ACCESO DENEGADO ] El rango '${currentRole}' no tiene permisos de escritura en el núcleo. Reclama el rango 'admin'.`;
+    }
+}
 
 //Borrar 
 function goToLevel(targetLevel) {

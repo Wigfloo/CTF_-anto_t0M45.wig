@@ -5,5 +5,5 @@ NEXUS BACKUP SYSTEM v1.0.4
 [STATUS] CRITICAL ERROR: Database backup file is CORRUPTED.
 Flags not found in this sector. 
 
-Sugerencia: Revisa los logs del servidor principal, no los del sistema de respaldo.
+Sugerencia: Yo no se como ustedes van a resolver esto
 ==================================================
