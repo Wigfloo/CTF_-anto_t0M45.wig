@@ -4,10 +4,11 @@ NEXUS CORE - DIRECTORIO DE MANTENIMIENTO
 
 [ALERTA] Enserio abrio el que dice no abrir?. 
 
-Para obtener la bandera del Nivel 2, copia la siguiente ruta, 
-pégala en la barra de direcciones de tu navegador y dale ENTER:
+Para obtener la bandera del Nivel 2, copia la siguiente ruta.
 
-stick/nexus_secure_gate.html
+/stick/nexus_secure_gate.html
+
+pégala borrando el archivo dont_open.txt dejando el link principal de direcciones de tu navegador y dale ENTER:
 
 
 neci@ >:c
