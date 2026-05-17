@@ -30,58 +30,82 @@ document.addEventListener("DOMContentLoaded", () => {
 // Al estar metidos dentro de esta variable de JavaScript, el código NO existe en la pantalla 
 // inicial, por lo que los participantes no pueden inspeccionar el HTML para ver los niveles avanzados.
 const levelsData = {
-   1: `
+ 1: `
         <h1 class="glitch" data-text="FASE 01: RECONOCIMIENTO">FASE 01: RECONOCIMIENTO</h1>
-        <p>Identidad del sistema confirmada. Punto de entrada detectado.</p>
+        <p>Identidad del sistema confirmada. Punto de entrada detectado con éxito.</p>
         
-        En auditorías reales, esta fase se conoce como Reconocimiento Cifrado. Ocurre cuando un desarrollador por descuido deja notas o credenciales de prueba en los comentarios del HTML. Aunque el usuario común no los ve, un atacante solo necesita inspeccionar el código para descubrir secretos del backend.</p>
+        <div style="background: rgba(0, 255, 65, 0.03); border-left: 3px solid #00FF41; padding: 10px; margin: 15px 0; font-size: 0.85rem; text-align: left; line-height: 1.4;">
+            <span style="color: #00FF41; font-weight: bold;">[ AUDITORÍA REQUERIDA ]:</span> 
+            Exposición de información en comentarios HTML. Ocurre cuando un desarrollador deja notas o credenciales de prueba olvidadas en el código. Un atacante solo inspecciona la estructura para descubrir secretos expuestos.
+        </div>
 
-        <p><strong>MISIÓN:</strong> Todos los desarrolladores dejan huellas. Inspecciona la base de esta interfaz para encontrar el código de desvío que quedó expuesto.</p>
-        <p style="color: #555;">(Pista: El secreto está oculto en los comentarios del código fuente)</p>
+        <p><strong>MISIÓN:</strong> Inspecciona la base de esta interfaz para encontrar el código de desvío.</p>
+        <p style="color: #555; font-size: 0.85rem;">(Pista: Abre F12 y busca entre los comentarios ocultos del código fuente).</p>
     `,
 
   2: `
-        <h1 class="glitch" data-text="FASE 02: RECONOCIMIENTO Y TRAMPAS">FASE 02: RECONOCIMIENTO Y TRAMPAS</h1>
-        <p>Acceso concedido. Estás dentro del perímetro. Nuestros escáneres profundos han detectado que el administrador dejó 3 archivos de respaldo olvidados en el directorio raíz.</p>
+        <h1 class="glitch" data-text="FASE 02: ARCHIVOS EXPUESTOS">FASE 02: ARCHIVOS EXPUESTOS</h1>
+        <p>Acceso concedido. Estás dentro del perímetro del directorio raíz del servidor.</p>
         
-        Esta vulnerabilidad se llama Exposición de Archivos Sensibles. Ocurre cuando se suben respaldos (.txt, .bak, .zip) a la raíz del servidor web y se olvidan ahí. Un atacante no necesita hackear nada; solo usa fuerza bruta o adivina el nombre del archivo en la URL para descargarlo y ver información confidencial.</p>
+        <div style="background: rgba(0, 255, 65, 0.03); border-left: 3px solid #00FF41; padding: 10px; margin: 15px 0; font-size: 0.85rem; text-align: left; line-height: 1.4;">
+            <span style="color: #00FF41; font-weight: bold;">[ AUDITORÍA REQUERIDA ]:</span> 
+            Exposición de archivos sensibles. Ocurre cuando se suben respaldos (.txt, .bak, .zip) a la producción de la web. Un atacante no necesita vulnerar el backend; solo rastrea o adivina el nombre del archivo en la URL para extraer datos confidenciales.
+        </div>
 
-        <div style="background: rgba(0, 255, 65, 0.05); border: 1px dashed #00FF41; padding: 15px; margin: 15px 0;">
-            <p style="color: #00FF41; font-weight: bold; margin: 0 0 10px 0;">[ ALERTA DE INTELIGENCIA ]</p>
-            <p>Solo uno de los siguientes archivos contiene la tabla de ruteo real. Los otros son señuelos para cazadores de recompensas (Honeypots):</p>
-            <ul style="line-height: 1.6; color: white;">
+        <div style="background: rgba(0, 255, 65, 0.05); border: 1px dashed #00FF41; padding: 12px; margin: 15px 0; font-size: 0.9rem;">
+            <p style="color: #00FF41; font-weight: bold; margin: 0 0 8px 0;">[ ALERTA DE INTELIGENCIA ]</p>
+            <p style="margin: 0 0 8px 0;">Solo uno de los siguientes archivos contiene la tabla de ruteo real. Los otros son señuelos (Honeypots):</p>
+            <ul style="line-height: 1.5; color: white; margin: 0; padding-left: 20px; text-align: left;">
                 <li><code>/stick/falg.html</code></li>
                 <li><code>/backup.txt</code></li>
                 <li><code>/dont_open.txt</code></li>
             </ul>
         </div>
 
-        <p><strong>MISIÓN:</strong> Prueba los archivos directamente en la URL de tu navegador (ejemplo: cambiar <code>/index.html</code> por <code>/backup.txt</code>). Encuentra el correcto para hallar la compuerta secreta.</p>
+        <p><strong>MISIÓN:</strong> Prueba los archivos directamente en la URL de tu navegador (ejemplo: cambiar <code>/index.html</code> por <code>/backup.txt</code>). Encuentra el correcto para hallar la compuerta secreta.</p> 
     `,
 
-    3: `
-        <h1 class="glitch" data-text="PHASE 03: INTERCEPT">PHASE 03: INTERCEPT</h1>
-        <p>Excellent. You know how to map a server's visible structure.</p>
-        <p><strong>MISSION:</strong> The next code isn't on the page. It is traveling through the network in an authorization request.</p>
-        <p><strong>TASK:</strong> Open your DevTools (F12), go to the <strong>Network</strong> tab, and find the request named <strong>"auth_check"</strong>. Look inside its headers.</p>
+   3: `
+        <h1 class="glitch" data-text="FASE 03: INTERCEPTACIÓN">FASE 03: INTERCEPTACIÓN</h1>
+        <p>Excelente. Ya sabes mapear la estructura visible del servidor web.</p>
         
-    
-    `,
+        <div style="background: rgba(0, 255, 65, 0.03); border-left: 3px solid #00FF41; padding: 10px; margin: 15px 0; font-size: 0.85rem; text-align: left; line-height: 1.4;">
+            <span style="color: #00FF41; font-weight: bold;">[ AUDITORÍA REQUERIDA ]:</span> 
+            Fuga de datos en cabeceras HTTP inseguras. Ocurre cuando la aplicación envía tokens ocultos en las peticiones de red de fondo (AJAX/Fetch). Un analista intercepta este tráfico para extraer credenciales sin tocar el backend.
+        </div>
 
+        <p><strong>MISIÓN:</strong> El código no está en el texto de la página; viaja en el tráfico de red.</p>
+        
+        <p style="color: #ffff00; font-size: 0.9rem;">
+            <strong>TAREA:</strong> Abre <strong>F12</strong> → pestaña <strong>Red (Network)</strong> → busca la petición <strong>"auth_check"</strong> (si no sale nada reinicia la pagina) → examina sus <strong>Cabeceras (Headers)</strong>.
+        </p>
+    `,
    4: `
-        <h1 class="glitch" data-text="PHASE 04: PRIVILEGE ESCALATION">PHASE 04: PRIVILEGE ESCALATION</h1>
-        <p>El sistema identifica tu rango mediante una variable bloqueada en la interfaz gráfica.</p>
+        <h1 class="glitch" data-text="FASE 04: ESCALACIÓN DE PRIVILEGIOS">FASE 04: ESCALACIÓN DE PRIVILEGIOS</h1>
+        <p>El sistema identifica tu rango actual mediante una variable bloqueada en la interfaz gráfica de usuario.</p>
         
-        <div style="border: 1px dashed #00FF41; padding: 15px; margin: 15px 0; background: rgba(0,0,0,0.3);">
-            <p style="margin: 0 0 10px 0; color: #aaa;">[ CONTROL DE ACCESO LOCAL ]</p>
+        <div style="background: rgba(0, 255, 65, 0.03); border-left: 3px solid #00FF41; padding: 10px; margin: 15px 0; font-size: 0.85rem; text-align: left; line-height: 1.4;">
+            <span style="color: #00FF41; font-weight: bold;">[ AUDITORÍA REQUERIDA ]:</span> 
+            Manipulación del DOM (Client-Side Trust). Ocurre cuando el sistema confía ciegamente en las restricciones del lado del cliente (como el atributo <code>disabled</code>). Un atacante altera el código directamente en su navegador para saltarse las reglas de la interfaz.
+        </div>
+
+        <div style="border: 1px dashed #00FF41; padding: 12px; margin: 15px 0; background: rgba(0,0,0,0.3); font-size: 0.9rem;">
+            <p style="margin: 0 0 8px 0; color: #aaa;">[ CONTROL DE ACCESO LOCAL ]</p>
             <label>Rango Asignado: </label>
             <input type="text" id="role-lock" value="guest" disabled 
                 style="background: #222; color: #ff003c; border: 1px solid #ff003c; padding: 5px; text-align: center; font-weight: bold; font-family: monospace;">
         </div>
 
-        <p><strong>MISSION:</strong> El botón de abajo lee el valor de esa caja. Usa el Inspector (F12), elimina el candado (<code>guest</code>) de la caja, cambia el texto por <strong>"admin"</strong> y solicita la credencial.</p>
+        <p><strong>MISIÓN:</strong> El botón de abajo lee el valor de esa caja que dice <code>guest</code>. Sigue estos pasos exactos para hackear el sistema:</p>
         
-        <button onclick="checkDOMPrivilege()" style="background: #00FF41; color: black; border: none; padding: 8px 15px; cursor: pointer; font-family: monospace; font-weight: bold;">
+        <div style="color: #ffff00; font-size: 0.9rem; margin: 10px 0; text-align: left; line-height: 1.5;">
+            1. Abre el Inspector de elementos presionando <strong>F12</strong>.<br>
+            2. Selecciona la caja de texto que dice <strong>"guest"</strong> en la pantalla.<br>
+            3. Modifica el texto borrando <strong>"guest"</strong> y escribe la palabra <strong>"admin"</strong> para subir tus privilegios a administrador.<br>
+            4. Por último, dale clic al botón de abajo para enviar la petición de rango y obtener tu bandera.
+        </div>
+        
+        <button onclick="checkDOMPrivilege()" style="background: #00FF41; color: black; border: none; padding: 8px 15px; cursor: pointer; font-family: monospace; font-weight: bold; margin-top: 10px;">
             [ ENVIAR PETICIÓN DE RANGO ]
         </button>
         
