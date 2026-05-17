@@ -13,7 +13,11 @@ const gameState = {
         "8d2689a6a2c6ff84cd61dbb8be258a4c0ad7e690666d0ae6d636d2cb9e875b65", // Hash del Nivel 3
         "171205345b3e23ef8f32831d974143f01bbc81eeb7ce3834ecfa548deb739da6", // Hash del Nivel 4 
         "25144928d11a1b28ecdc54eb2ccdbaa57d7e59c251cc430d5a8071455b96d383", // Hash del Nivel 5 
-        "5e713b05e5272bad5c7bb7d6ff69969da4777a1de79224dd8bfa86ceca0871d2"  // trama
+        "9b56811afcf7b190610e681c71b79277419e87e5fee385aa5a59f65b66338b5a", // Hash del nivel 6
+        "a0b9d2d6e4c38d5642d0c8edf4d023cc1f5dbb934d5fd3de410643a4140365b8", // Hash del nivel 7
+        "3183d67815c6d0b97139fa304645d14964caeacb214e131f7c21f02db9d6a2ac", // Hash del nivel 8
+
+        "5e713b05e5272bad5c7bb7d6ff69969da4777a1de79224dd8bfa86ceca0871d2", // trampa
     ]
 };
 
@@ -59,43 +63,109 @@ const levelsData = {
     
     `,
 
-    4: `
-        <h1 class="glitch" data-text="PHASE 04: LOGIC INJECTION">PHASE 04: LOGIC INJECTION</h1>
-        <p>El cortafuegos del núcleo bloquea las peticiones estándar basadas en tu rango de usuario.</p>
+   4: `
+        <h1 class="glitch" data-text="PHASE 04: PRIVILEGE ESCALATION">PHASE 04: PRIVILEGE ESCALATION</h1>
+        <p>El sistema identifica tu rango mediante una variable bloqueada en la interfaz gráfica.</p>
         
-        <div id="auth-terminal" data-clearance="guest" style="border: 1px solid #555; padding: 15px; margin: 15px 0; background: rgba(0,0,0,0.4);">
-            <p style="margin: 0; color: #aaa;">[ SYSTEM IDENTITY LOCK ]</p>
-            <p style="margin: 5px 0;">ID de Sesión: <span style="color: #ffff00;">STU-9923</span></p>
-            <p style="margin: 0;">Rango de Seguridad Actual: <strong style="color: #ff003c;">GUEST (Invitado)</strong></p>
+        <div style="border: 1px dashed #00FF41; padding: 15px; margin: 15px 0; background: rgba(0,0,0,0.3);">
+            <p style="margin: 0 0 10px 0; color: #aaa;">[ CONTROL DE ACCESO LOCAL ]</p>
+            <label>Rango Asignado: </label>
+            <input type="text" id="role-lock" value="guest" disabled 
+                style="background: #222; color: #ff003c; border: 1px solid #ff003c; padding: 5px; text-align: center; font-weight: bold; font-family: monospace;">
         </div>
 
-        <p><strong>MISSION:</strong> Usa el Inspector de Elementos (F12) para examinar la caja de identidad de arriba. Modifica tu atributo de seguridad local para engañar al sistema y elevarte a <strong>"admin"</strong>.</p>
+        <p><strong>MISSION:</strong> El botón de abajo lee el valor de esa caja. Usa el Inspector (F12), elimina el candado (<code>guest</code>) de la caja, cambia el texto por <strong>"admin"</strong> y solicita la credencial.</p>
         
-        <button onclick="checkDOMPrivilege()" style="background: transparent; color: #00FF41; border: 1px solid #00FF41; padding: 8px 15px; cursor: pointer; font-family: monospace; font-weight: bold;">
-            [ INYECTAR ORDEN DE ACCESO ]
+        <button onclick="checkDOMPrivilege()" style="background: #00FF41; color: black; border: none; padding: 8px 15px; cursor: pointer; font-family: monospace; font-weight: bold;">
+            [ ENVIAR PETICIÓN DE RANGO ]
         </button>
         
         <div id="dom-status" style="margin-top: 15px; font-weight: bold;"></div>
     `,
         
-    5: `<h1 class="glitch" data-text="PHASE 05: ENCRYPTED TRANSMISSION">PHASE 05: ENCRYPTED TRANSMISSION</h1>
-        <p>You have triggered an internal alarm. The system is broadcasting an encrypted emergency beacon to the main core.</p>
-        <p><strong>MISSION:</strong> Intercept the communication. Our sensors captured a heavily encoded text string flying through the system logs.</p>
+   5: `<h1 class="glitch" data-text="FASE 05: TRANSMISIÓN ENCRIPTADA">FASE 05: TRANSMISIÓN ENCRIPTADA</h1>
+        <p>Has activado una alarma interna. El sistema está transmitiendo una baliza de emergencia encriptada hacia el núcleo principal.</p>
+        <p><strong>MISIÓN:</strong> Intercepta la comunicación. Nuestros sensores capturaron una cadena de texto fuertemente codificada volando a través de los registros del sistema.</p>
         
         <div style="background: rgba(0,20,0,0.5); border: 1px solid #00FF41; padding: 15px; margin: 15px 0; text-align: center;">
-            <p style="color: #ff003c; font-weight: bold; margin: 0 0 10px 0;">[ INTERCEPTED DATA STREAM ]</p>
-            <code style="color: white; font-size: 1.1rem; letter-spacing: 1px;">VVNUQShDMVBoRVJfTTRTVDNSKQ==</code>
+            <p style="color: #ff003c; font-weight: bold; margin: 0 0 10px 0;">[ TRANSMISIÓN DE DATOS INTERCEPTADA ]</p>
+            <code style="color: white; font-size: 1.1rem; letter-spacing: 1px;">VlZOVVFTaERNVkJvUlZKZlRUUlRWRE5TS1E9PQ==</code>
         </div>
 
-        <p><strong>TASK:</strong> Decrypt the payload. The structure looks like standard radix-64 encoding. Find the tool to break it.</p>
+        <p><strong>TAREA:</strong> Desencripta la carga útil (payload). La estructura parece una codificación radix-64 estándar. Encuentra la herramienta para romperla.</p>
         <p style="color: #555; font-size: 0.85rem;">
-            (Hint: CyberChef is an analyst's best friend. Look for the "From Base64" recipe).
+            (Pista: CyberChef es el mejor amigo de un analista. Busca la receta "From Base64" varias veces).
         </p>
     `,
     
-    6: `<h1>PHASE 07: FUZZING</h1><p>Próximamente...</p>`,
-    7: `<h1>PHASE 08: LOGIC INJECTION</h1><p>Próximamente...</p>`,
-    8: `<h1>PHASE 09: REVERSE ENGINEERING</h1><p>Próximamente...</p>`,
+6: `
+        <h1 class="glitch" data-text="PHASE 06: OS COMMAND INJECTION">PHASE 06: OS COMMAND INJECTION</h1>
+        <p>Hemos encontrado un panel de diagnóstico de red interno que ejecuta comandos directamente en el servidor central.</p>
+        
+        <div style="border: 1px solid #00FF41; padding: 15px; margin: 15px 0; background: #020202;">
+            <p style="color: #00FF41; margin-top: 0;">[ NEXUS PING UTILITY v2.1 ]</p>
+            <label>IP de Destino: </label>
+            <input type="text" id="ping-input" placeholder="ej. 127.0.0.1" 
+                style="background: #111; color: #00FF41; border: 1px solid #00FF41; padding: 5px; font-family: monospace; width: 180px;">
+            <button onclick="executePingTool()" style="background: #00FF41; color: black; border: none; padding: 5px 10px; cursor: pointer; font-family: monospace; font-weight: bold;">
+                [ PING ]
+            </button>
+            
+            <pre id="ping-output" style="margin-top: 15px; color: #aaa; background: #000; padding: 10px; border: 1px solid #333; font-size: 0.85rem; text-align: left; max-height: 150px; overflow-y: auto;"></pre>
+        </div>
+
+        <p><strong>MISSION:</strong> La aplicación no sanitiza los caracteres especiales. Intenta encadenar un comando de consola (como <code>ls</code> = (ver archivos) o <code>cat</code> =(ver contenido) ) usando operadores web (<code>;</code> o <code>&&</code>) para listar los archivos del servidor y leer el archivo secreto.</p>
+    `,
+
+  7: `
+        <h1 class="glitch" data-text="PHASE 07: DIGITAL FORENSICS">PHASE 07: DIGITAL FORENSICS</h1>
+        <p>Una imagen dice más que mil palabras... y a veces, guarda códigos de acceso secretos en sus metadatos ocultos.</p>
+        
+        <div style="text-align: center; margin: 20px 0; border: 1px solid #00FF41; padding: 15px; background: rgba(0,0,0,0.5);">
+            <p style="color: #ffff00; margin-top: 0;">[ DETECTADO: ARCHIVO SOSPECHOSO ]</p>
+            
+            <img src="Iwa64n_(4Yu_FI46.png" alt="Blueprint" style="width: 180px; border: 1px solid #333; margin-bottom: 15px; cursor: pointer;" onclick="window.open('Iwa64n_(4Yu_FI46.png', '_blank')">
+            <br>
+            
+            <a href="Iwa64n_(4Yu_FI46.png" download style="background: transparent; color: #00FF41; border: 1px dashed #00FF41; padding: 8px 15px; cursor: pointer; font-family: monospace; font-weight: bold; text-decoration: none; display: inline-block;">
+                [ DESCARGAR ARCHIVO: Iwa64n_(4Yu_FI46.png ]
+            </a>
+        </div>
+
+        <p><strong>MISSION:</strong> El token de acceso ha sido incrustado en los metadatos de este archivo PNG.</p>
+        
+        <div style="text-align: left; max-width: 480px; margin: 10px auto; color: #aaa; font-size: 0.9rem; line-height: 1.4;">
+            Plataforma de análisis forense sugerida: 
+            <a href="https://exif.tools/exiftool" target="_blank" style="color: #00FF41; font-weight: bold; text-decoration: underline;">https://exif.tools/exiftool</a><br>
+            
+        </div>
+    `,
+
+8: `
+        <h1 class="glitch" data-text="PHASE 08: RF SIGNAL DEMODULATION">PHASE 08: RF SIGNAL DEMODULATION</h1>
+        <p>Hemos sintonizado una antena de software definido (SDR) en la frecuencia central de la telemetría del núcleo.</p>
+        
+        <div style="background: #020202; border: 1px solid #00FF41; padding: 10px; font-family: monospace; text-align: left; font-size: 0.85rem; max-height: 220px; overflow-y: auto;">
+            <p style="color: #ffff00; margin: 0 0 10px 0;">[ SDR SPECTRUM CAPTURE - FREQ: 433.920 MHz - MOD: OOK ]</p>
+            <span style="color: #555;">TIME | SPECTRUM WATERFALL</span><br>
+            <span style="color: #666;">------------------------------------------------</span><br>
+            0.1s | <span style="color: #00FF41;">████████████</span>                      [CH 1: HIGH]<br>
+            0.2s | <span style="color: #333;">............</span>                      [CH 1: LOW]<br>
+            0.3s | <span style="color: #00FF41;">████████████</span>                      [CH 1: HIGH]<br>
+            0.4s | <span style="color: #00FF41;">████████████</span>                      [CH 1: HIGH]<br>
+            0.5s | <span style="color: #333;">............</span>                      [CH 1: LOW]<br>
+            0.6s | <span style="color: #333;">............</span>                      [CH 1: LOW]<br>
+            0.7s | <span style="color: #00FF41;">████████████</span>                      [CH 1: HIGH]<br>
+            0.8s | <span style="color: #333;">............</span>                      [CH 1: LOW]<br>
+            <span style="color: #666;">------------------------------------------------</span><br>
+            <p style="margin: 5px 0 0 0; color: #aaa; font-size: 0.8rem;">[INFO] Modulación digital por ancho de pulso detectada. Estructura de ráfaga completa.</p>
+        </div>
+
+        <p><strong>MISSION:</strong> Demodula la señal digital. Un bloque lleno <code>████</code> equivale a un bit en estado alto (<code>1</code>) y una línea de puntos <code>....</code> equivale a un bit en estado bajo (<code>0</code>). Traduce el byte de 8 bits resultante de binario a texto.</p>
+        
+        <p style="color: #555; font-size: 0.8rem;">(Pista: El orden de los tiempos va de 0.1s a 0.8s. Puedes usar CyberChef con la receta 'From Binary' para revelar el caracter oculto de la bandera).</p>
+    `,
+    
     9: `<h1>PHASE 09: REVERSE ENGINEERING</h1><p>Próximamente...</p>`,
     10: `<h1>PHASE 10: FINAL BREACH</h1><p>El núcleo del sistema.</p>`
 };
@@ -194,20 +264,18 @@ function verifyFlag() {
     // Comparamos: ¿El hash de lo que escribió el usuario es IGUAL al hash que tenemos guardado para este nivel?
     if (inputHash === gameState.hashes[gameState.level - 1]) {
         msg.innerHTML = "<span style='color: #00FF41;'>[ ACCESS GRANTED ]</span>";
-        
-        gameState.level++; // Subimos de nivel en la variable
-        localStorage.setItem('nexus_level', gameState.level); // ¡LO GUARDAMOS EN EL NAVEGADOR!
+        gameState.level++;
+        localStorage.setItem('nexus_level', gameState.level);
         
         setTimeout(() => {
             document.getElementById('flag-input').value = '';
             msg.innerHTML = '';
-            loadLevel(gameState.level); // Cargamos el nuevo nivel 
+            loadLevel(gameState.level); // Carga el siguiente nivel
         }, 1000);
     } else {
         msg.innerHTML = "<span style='color: #FF003C;'>[ ACCESS DENIED - INVALID FLAG ]</span>";
         setTimeout(() => msg.innerHTML = '', 2000);
     }
-
 }
 
 // ==========================================
@@ -281,18 +349,7 @@ if (levelNum === 3) {
     triggerIntercept();
 }
 
-// ==========================================
-// LÓGICA DEL NIVEL 4: COOKIES
-// ==========================================
 
-// Función para crear la cookie de invitado
-function setGuestCookie() {
-    // Si la cookie no existe, la creamos como 'guest'
-    if (!document.cookie.includes("user_role=")) {
-        document.cookie = "user_role=guest; path=/; max-age=3600;";
-        console.log("Session Cookie generated: user_role=guest");
-    }
-}
 
 // Función que ejecuta el botón para revisar si ya son Administradores
 function checkCookiePrivilege() {
@@ -322,26 +379,57 @@ function checkCookiePrivilege() {
 // LÓGICA DEL NIVEL 4: MANIPULACIÓN DEL DOM
 // ==========================================
 function checkDOMPrivilege() {
-    const element = document.getElementById('auth-terminal');
+    const roleInput = document.getElementById('role-lock');
     const status = document.getElementById('dom-status');
     
-    // Leemos en tiempo real qué tiene escrito el atributo 'data-clearance'
-    const currentRole = element.getAttribute('data-clearance');
+    // Leemos directamente el valor que tenga la caja de texto en ese instante
+    const currentValue = roleInput.value.trim().toLowerCase();
     
-    if (currentRole === "admin") {
+    if (currentValue === "admin") {
         status.style.color = "#00FF41";
         status.innerHTML = `
-            <p>[ ESCALACIÓN DE PRIVILEGIOS EXITOSA ]</p>
+            <p>[ ESCALACIÓN EXITOSA - CONFIGURACIÓN CORONADA ]</p>
             <p style="color: white; border: 1px dashed #00FF41; padding: 10px; display: inline-block; background: #050505;">
                 FLAG_04: USTA(D0M_M4N1PUL4T0R)
             </p>
         `;
     } else {
         status.style.color = "#ff003c";
-        status.innerHTML = `[ ACCESO DENEGADO ] El rango '${currentRole}' no tiene permisos de escritura en el núcleo. Reclama el rango 'admin'.`;
+        status.innerHTML = `[ ERROR ] El rango '${roleInput.value}' no tiene autorización. Cambia el valor a 'admin'.`;
     }
 }
 
+// ==========================================
+// LÓGICA DEL NIVEL 6: ping
+// ==========================================
+
+function executePingTool() {
+    const query = document.getElementById('ping-input').value.trim().toLowerCase();
+    const output = document.getElementById('ping-output');
+    
+    if (!query) {
+        output.innerHTML = "Error: IP string cannot be empty.";
+        return;
+    }
+    
+    output.innerHTML = "Executing ping command on remote host...\n";
+    
+    setTimeout(() => {
+        // Caso 1: El estudiante logra listar los archivos (ls)
+        if ((query.includes(';') || query.includes('&&')) && query.includes('ls')) {
+            output.innerHTML = `PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.\n\n--- ARCHIVOS ENCONTRADOS EN EL DIRECTORIO ---\nbackup.log\nserver.js\nflag_secret.txt\nindex.html`;
+        } 
+        // Caso 2: El estudiante lee el archivo de la bandera (cat flag_secret.txt)
+        else if ((query.includes(';') || query.includes('&&')) && query.includes('cat') && query.includes('flag_secret.txt')) {
+            // AQUÍ INYECTAMOS LA NUEVA BANDERA
+            output.innerHTML = `--- RELEYENDO ARCHIVO: flag_secret.txt ---\n\n[SUCCESS] Contenido del archivo:\nUSTA(CMD_1NJ_3XPL01T)`;
+        } 
+        // Caso 3: Un ping común y corriente sin hackear
+        else {
+            output.innerHTML = `PING ${query} (RAW_HOST) 56(84) bytes of data.\n\n--- ${query} ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss.`;
+        }
+    }, 800);
+}
 //Borrar 
 function goToLevel(targetLevel) {
     console.log("Forzando salto al nivel:", targetLevel);
