@@ -1,0 +1,9 @@
+==================================================
+[!] NEXUS SECURE FIREWALL: INTRUSION DETECTED
+==================================================
+
+WARNING: This configuration log is encrypted under RSA-4096.
+Nice try, but there is nothing but empty bytes here.
+
+[ TIP: A veces lo más obvio no es lo correcto. Sigue buscando. ]
+==================================================

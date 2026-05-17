@@ -6,14 +6,14 @@ const gameState = {
     level: 1, // Rastrea en qué nivel va el jugador actualmente.
     
     // Aquí guardamos las respuestas de los niveles, pero CIFRADAS en SHA-256.
-    // En lugar de guardar "USTA{W3LC0M3_T0_TH3_N3XUS}", guardamos su huella digital (hash).
     // Si alguien abre este archivo para hacer trampa, solo verá este texto sin sentido.
     hashes: [
-        "93bd99033ecfa63cc65fcd92e5bc0bbf975cd242eb38413eabde19ca8ce0e950", // Hash del Nivel 1
-        "28085a09e5389970d6672d41c7360324a7f194a4e5de9b00885a12361770b2ed", // Hash del Nivel 2
-        "7f93533ccd08f7c31a6e1da959c7ab26a936db69bb764415abc5e1a025306bcc", // Hash del Nivel 3
-        "b9afc537f538d7b92fdf17c5e8cf15826ed2aed5b45351424a6175b064c4847e", // Hash del Nivel 4 
-        "c3306dea831b09bde0ce90cfe78e0773e08406d917e6090393d0b603e7d7fc0b", // Hash del Nivel 5 
+        "6c5b693d8a674305c6d78a969e22fd058683018b21349d144a7cb979ad91abba", // Hash del Nivel 1
+        "b39acd52541fa011f4051d6e4486629f37c095dc3d6adf390d5b7767fe8dab1f", // Hash del Nivel 2
+        "8d2689a6a2c6ff84cd61dbb8be258a4c0ad7e690666d0ae6d636d2cb9e875b65", // Hash del Nivel 3
+        "1994e3f9c60270a102a2276ea48ab8bf3c9a5b9d3ddc75c0b151ab64fb27d870", // Hash del Nivel 4 
+        "25144928d11a1b28ecdc54eb2ccdbaa57d7e59c251cc430d5a8071455b96d383", // Hash del Nivel 5 
+        "5e713b05e5272bad5c7bb7d6ff69969da4777a1de79224dd8bfa86ceca0871d2"  // trama
     ]
 };
 
@@ -32,18 +32,24 @@ const levelsData = {
         <p><strong>MISSION:</strong> All developers leave footprints. Inspect the foundation of this interface to find the bypass code.</p>
         <p style="color: #555;">(Hint: The secret is hidden in the source code comments)</p>
     `,
-    2: `
-        <h1 class="glitch" data-text="PHASE 02: DISCOVERY">PHASE 02: DISCOVERY</h1>
-        <p>Access granted. You are now inside the perimeter.</p>
-        <p><strong>MISSION:</strong> Finding the front door is easy; finding the maintenance hatch is harder. Search the root files that tell "crawlers" where NOT to look.</p>
+
+  2: `
+        <h1 class="glitch" data-text="PHASE 02: RECON & TRAPS">PHASE 02: RECON & TRAPS</h1>
+        <p>Access granted. You are inside the perimeter. Our deep scanners have detected that the administrator left 3 backup files forgotten in the root directory.</p>
         
-        <button onclick="showHint()" style="background: transparent; color: #ff003c; border: 1px solid #ff003c; padding: 3px 10px; font-size: 0.8rem; margin-top: 10px;">
-            [ REQUEST INTEL ]
-        </button>
-        <p id="hint-text" style="color: #888; display: none; font-style: italic; margin-top: 5px;">
-            Tip: Web scrapers and indexers check a specific '.txt' file at the root of the domain to know which paths are forbidden. Try navigating there.
-        </p>
+        <div style="background: rgba(0, 255, 65, 0.05); border: 1px dashed #00FF41; padding: 15px; margin: 15px 0;">
+            <p style="color: #00FF41; font-weight: bold; margin: 0 0 10px 0;">[ ALERTA DE INTELIGENCIA ]</p>
+            <p>Solo uno de los siguientes archivos contiene la tabla de ruteo real. Los otros son señuelos para cazadores de recompensas:</p>
+            <ul style="line-height: 1.6; color: white;">
+                <li><code>/stick/falg.html</code></li>
+                <li><code>/backup.txt</code></li>
+                <li><code>/dont_open.txt</code></li>
+            </ul>
+        </div>
+
+        <p><strong>MISSION:</strong> Prueba los archivos directamente en la URL de tu navegador (ejemplo: cambiar <code>index.html</code> por <code>/backup.txt</code>). Encuentra el correcto para hallar la compuerta secreta.</p>
     `,
+
     3: `
         <h1 class="glitch" data-text="PHASE 03: INTERCEPT">PHASE 03: INTERCEPT</h1>
         <p>Excellent. You know how to map a server's visible structure.</p>
@@ -64,20 +70,20 @@ const levelsData = {
         <div id="vault-output" style="margin-top: 15px; color: #ff003c; font-weight: bold;"></div>`,
     
         
-    5: `<h1 class="glitch" data-text="PHASE 05: RAW BYTES ANALYSIS">PHASE 05: RAW BYTES ANALYSIS</h1>
-        <p>A hacker doesn't just look at the surface. They look at the raw structure of the data.</p>
-        <p><strong>MISSION:</strong> We've recovered this image from a Dark Web server. It seems to contain visual clues, but our intel suggests the REAL key is hidden where the eyes can't see.</p>
-        <p><strong>TASK:</strong> Download the file and analyze its hexadecimal structure. use Hex Editor to solve.</p>
+    5: `<h1 class="glitch" data-text="PHASE 05: ENCRYPTED TRANSMISSION">PHASE 05: ENCRYPTED TRANSMISSION</h1>
+        <p>You have triggered an internal alarm. The system is broadcasting an encrypted emergency beacon to the main core.</p>
+        <p><strong>MISSION:</strong> Intercept the communication. Our sensors captured a heavily encoded text string flying through the system logs.</p>
         
-        <div style="text-align: center; margin-top: 20px;">
-            <img src="Iwa64n_(4Yu_FI46.png" alt="Dark Web Iceberg" style="width: 300px; border: 1px solid #00FF41; box-shadow: 0 0 15px #00FF41;">
-            <br><br>
-            <a href="Iwa64n_(4Yu_FI46.png" download style="color: #00FF41; font-size: 0.8rem; text-decoration: none; border: 1px dashed #00FF41; padding: 10px;">
-                [ DOWNLOAD ENCRYPTED_IMAGE.PNG ]
-            </a>
+        <div style="background: rgba(0,20,0,0.5); border: 1px solid #00FF41; padding: 15px; margin: 15px 0; text-align: center;">
+            <p style="color: #ff003c; font-weight: bold; margin: 0 0 10px 0;">[ INTERCEPTED DATA STREAM ]</p>
+            <code style="color: white; font-size: 1.1rem; letter-spacing: 1px;">VVNUQShDMVBoRVJfTTRTVDNSKQ==</code>
         </div>
-        <p></p>`,
 
+        <p><strong>TASK:</strong> Decrypt the payload. The structure looks like standard radix-64 encoding. Find the tool to break it.</p>
+        <p style="color: #555; font-size: 0.85rem;">
+            (Hint: CyberChef is an analyst's best friend. Look for the "From Base64" recipe).
+        </p>
+    `,
     
     6: `<h1>PHASE 07: FUZZING</h1><p>Próximamente...</p>`,
     7: `<h1>PHASE 08: LOGIC INJECTION</h1><p>Próximamente...</p>`,
@@ -141,6 +147,41 @@ function verifyFlag() {
     
     // Convertimos lo que el usuario escribió en un hash SHA-256 usando la librería CryptoJS.
     const inputHash = CryptoJS.SHA256(input).toString();
+
+  if (inputHash === "a5af542ed4ae9557144b79c669540d0b5026c68591836bfe9f62541d9ef50e2a" || 
+        inputHash === "5e713b05e5272bad5c7bb7d6ff69969da4777a1de79224dd8bfa86ceca0871d2") {
+        
+        const container = document.getElementById('terminal-content');
+        msg.innerHTML = "<span style='color: #FF003C; font-weight: bold;'>[ ¡SISTEMA COMPROMETIDO! AMENAZA DETECTADA ]</span>";
+        
+        // Ocultamos el área de inputs
+        document.querySelector('.input-area').style.display = 'none';
+        
+        // Inyectamos la imagen del gato y el botón de reset
+        // Se agregó un delay de 1 seg para darle misterio al mensaje de arriba
+        setTimeout(() => {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 10px;">
+                    <h2 style="color: #ff003c;" class="glitch" data-text="HACKED BY A CAT?">HACKED BY A CAT?</h2>
+                    <p style="color: white; font-style: italic; margin-bottom: 15px;">
+                        Has caído en un Honeypot de nivel 1. No confíes en todo lo que encuentras en los logs.
+                    </p>
+                    
+                    <img src="gato.jpeg" alt="Laughing Cat Trap" 
+                        style="max-width: 100%; height: auto; border: 2px solid #ff003c; box-shadow: 0 0 15px #ff003c; margin-bottom: 20px;">
+                    
+                    <br>
+                    <button onclick="localStorage.clear(); location.reload();" 
+                        style="background: #ff003c; color: white; border: none; padding: 10px 20px; cursor: pointer; font-family: monospace;">
+                        [ REINICIAR SISTEMA PARA INTENTAR DE NUEVO ]
+                    </button>
+                </div>
+            `;
+            msg.innerHTML = '';
+        }, 1000);
+        
+        return; // Detiene la función aquí
+    }
     
     // Comparamos: ¿El hash de lo que escribió el usuario es IGUAL al hash que tenemos guardado para este nivel?
     if (inputHash === gameState.hashes[gameState.level - 1]) {
@@ -215,10 +256,10 @@ function showHint() {
 }
 function triggerIntercept() {
     // Simulamos una petición. Aunque de error 404, la bandera se verá en las cabeceras.
-    fetch('auth_check?token=USTA{H34D3R_D4T4_M1N3R}', {
+    fetch('auth_check?token=USTA(H34D3R_D4T4_M1N3R)', {
         method: 'GET',
         headers: {
-            'X-Nexus-Auth': 'USTA{H34D3R_D4T4_M1N3R}',
+            'X-Nexus-Auth': 'USTA(H34D3R_D4T4_M1N3R)',
             'X-Mission-Status': 'Active'
         }
     }).catch(err => {
@@ -257,7 +298,7 @@ function checkCookiePrivilege() {
         output.innerHTML = `
             <p>[ ACCESS GRANTED - WELCOME ADMINISTRATOR ]</p>
             <p style="color: white; border: 1px dashed #00FF41; padding: 10px; display: inline-block;">
-                FLAG: USTA{C00K1E_M4N1PUL4T0R_X}
+                FLAG: USTA(C00K1E_M4N1PUL4T0R_X)
             </p>
         `;
     } else {

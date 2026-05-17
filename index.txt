@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /nexus_secure_gate.html
-
-# SYSTEM NOTE: Do not allow external crawlers into the maintenance hatch.
