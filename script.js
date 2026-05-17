@@ -30,20 +30,25 @@ document.addEventListener("DOMContentLoaded", () => {
 // Al estar metidos dentro de esta variable de JavaScript, el código NO existe en la pantalla 
 // inicial, por lo que los participantes no pueden inspeccionar el HTML para ver los niveles avanzados.
 const levelsData = {
-    1: `
-        <h1 class="glitch" data-text="PHASE 01: RECONNAISSANCE">PHASE 01: RECONNAISSANCE</h1>
-        <p>System identity confirmed. Entry point detected.</p>
-        <p><strong>MISSION:</strong> All developers leave footprints. Inspect the foundation of this interface to find the bypass code.</p>
-        <p style="color: #555;">(Hint: The secret is hidden in the source code comments)</p>
+   1: `
+        <h1 class="glitch" data-text="FASE 01: RECONOCIMIENTO">FASE 01: RECONOCIMIENTO</h1>
+        <p>Identidad del sistema confirmada. Punto de entrada detectado.</p>
+        
+        En auditorías reales, esta fase se conoce como Reconocimiento Cifrado. Ocurre cuando un desarrollador por descuido deja notas o credenciales de prueba en los comentarios del HTML. Aunque el usuario común no los ve, un atacante solo necesita inspeccionar el código para descubrir secretos del backend.</p>
+
+        <p><strong>MISIÓN:</strong> Todos los desarrolladores dejan huellas. Inspecciona la base de esta interfaz para encontrar el código de desvío que quedó expuesto.</p>
+        <p style="color: #555;">(Pista: El secreto está oculto en los comentarios del código fuente)</p>
     `,
 
   2: `
-        <h1 class="glitch" data-text="PHASE 02: RECON & TRAPS">PHASE 02: RECON & TRAPS</h1>
-        <p>Access granted. You are inside the perimeter. Our deep scanners have detected that the administrator left 3 backup files forgotten in the root directory.</p>
+        <h1 class="glitch" data-text="FASE 02: RECONOCIMIENTO Y TRAMPAS">FASE 02: RECONOCIMIENTO Y TRAMPAS</h1>
+        <p>Acceso concedido. Estás dentro del perímetro. Nuestros escáneres profundos han detectado que el administrador dejó 3 archivos de respaldo olvidados en el directorio raíz.</p>
         
+        Esta vulnerabilidad se llama Exposición de Archivos Sensibles. Ocurre cuando se suben respaldos (.txt, .bak, .zip) a la raíz del servidor web y se olvidan ahí. Un atacante no necesita hackear nada; solo usa fuerza bruta o adivina el nombre del archivo en la URL para descargarlo y ver información confidencial.</p>
+
         <div style="background: rgba(0, 255, 65, 0.05); border: 1px dashed #00FF41; padding: 15px; margin: 15px 0;">
             <p style="color: #00FF41; font-weight: bold; margin: 0 0 10px 0;">[ ALERTA DE INTELIGENCIA ]</p>
-            <p>Solo uno de los siguientes archivos contiene la tabla de ruteo real. Los otros son señuelos para cazadores de recompensas:</p>
+            <p>Solo uno de los siguientes archivos contiene la tabla de ruteo real. Los otros son señuelos para cazadores de recompensas (Honeypots):</p>
             <ul style="line-height: 1.6; color: white;">
                 <li><code>/stick/falg.html</code></li>
                 <li><code>/backup.txt</code></li>
@@ -51,7 +56,7 @@ const levelsData = {
             </ul>
         </div>
 
-        <p><strong>MISSION:</strong> Prueba los archivos directamente en la URL de tu navegador (ejemplo: cambiar <code>index.html</code> por <code>/backup.txt</code>). Encuentra el correcto para hallar la compuerta secreta.</p>
+        <p><strong>MISIÓN:</strong> Prueba los archivos directamente en la URL de tu navegador (ejemplo: cambiar <code>/index.html</code> por <code>/backup.txt</code>). Encuentra el correcto para hallar la compuerta secreta.</p>
     `,
 
     3: `
