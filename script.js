@@ -32,6 +32,34 @@ document.addEventListener("DOMContentLoaded", () => {
 // Al estar metidos dentro de esta variable de JavaScript, el código NO existe en la pantalla 
 // inicial, por lo que los participantes no pueden inspeccionar el HTML para ver los niveles avanzados.
 const levelsData = {
+
+    
+0: `
+        <h1 class="glitch" data-text="[ BIENVENIDO AL SISTEMA NEXUS ]">[ BIENVENIDO AL SISTEMA NEXUS ]</h1>
+        <p style="color: #ffff00; font-weight: bold;">ALERTA DE OPERACIÓN: INFILTRACIÓN REQUERIDA</p>
+        
+        <div style="background: rgba(0, 255, 65, 0.02); border: 1px dashed #00FF41; padding: 15px; margin: 15px 0; font-size: 0.9rem; text-align: left; line-height: 1.5; color: white;">
+            <p style="margin-top: 0; color: #00FF41; font-weight: bold;">[ RESUMEN DE INTELIGENCIA ]</p>
+            La corporación malévola ha desplegado un protocolo global automatizado en su infraestructura central con el fin de comprometer las redes externas. Tu unidad ha sido seleccionada para interceptar y neutralizar esta amenaza desde el interior del sistema.
+            <br><br>
+            Estás frente a la terminal de enlace intermedio. Para avanzar a través de los perímetros de seguridad, deberás auditar cada sector, identificar vulnerabilidades comunes en sistemas web (comentarios expuestos, fugas en redes, inyecciones de comandos) y extraer los tokens de acceso correspondientes.
+        </div>
+
+        <p><strong>INSTRUCCIONES DE OPERACIÓN:</strong></p>
+        <ul style="text-align: left; line-height: 1.6; font-size: 0.9rem; color: #aaa; padding-left: 20px;">
+            <li>Utiliza las herramientas de desarrollo de tu navegador (<strong style="color: #00FF41;">F12</strong>) para inspeccionar el código, la red y las variables de sesión en cada entorno.</li>
+            <li>Cuando captures una bandera o token en formato <code style="color: white;">USTA(...)</code>, introdúcelo en el validador inferior para descifrar el acceso al siguiente sector.</li>
+            <li>El tiempo y la precisión son críticos. El destino de la infraestructura global depende de tu capacidad técnica.</li>
+        </ul>
+
+        <div style="margin-top: 25px; text-align: center;">
+            <button onclick="window.startInfiltration()" style="background: #00FF41; color: black; border: none; padding: 12px 25px; font-size: 1.1rem; cursor: pointer; font-family: monospace; font-weight: bold; box-shadow: 0 0 10px rgba(0,255,65,0.3);">
+                [ INICIAR PROTOCOLO DE INFILTRACIÓN ]
+            </button>
+        </div>
+    `,
+
+
  1: `
         <h1 class="glitch" data-text="FASE 01: RECONOCIMIENTO">FASE 01: RECONOCIMIENTO</h1>
         <p>Identidad del sistema confirmada. Punto de entrada detectado con éxito.</p>
@@ -42,7 +70,7 @@ const levelsData = {
         </div>
 
         <p><strong>MISIÓN:</strong> Inspecciona la base de esta interfaz para encontrar el código de desvío.</p>
-        <p style="color: #555; font-size: 0.85rem;">(Pista: Abre F12 y busca entre los comentarios ocultos del código fuente).</p>
+        <p style="color: #555; font-size: 0.85rem;">(Pista:Comentarios ocultos del código fuente).</p>
     `,
 
   2: `
@@ -221,7 +249,6 @@ const levelsData = {
         </div>
 
         <p><strong>MISIÓN:</strong> Manipula el campo de <strong>Usuario</strong> inyectando la instrucción lógica clásica <code>' OR '1'='1</code> para vulnerar el inicio de sesión y forzar al sistema a escupir el usuario oculto.</p>
-        <p style="color: #ffff00; font-size: 0.85rem;">⚠️ (Nota: El usuario que obtengas ES tu bandera de este nivel. Introdúcelo en el validador global para avanzar y guárdalo muy bien, lo vas a necesitar en la Fase 9).</p>
     `,
 
 9: `
@@ -238,7 +265,7 @@ const levelsData = {
             <button onclick="executeRAMScan()" style="background: #ff003c; color: white; border: none; padding: 6px 12px; cursor: pointer; font-family: monospace; font-weight: bold; display: block; margin: 0 auto 10px auto;">
                 [ INTERCEPTAR FLUJO DE RAM ]
             </button>
-            <pre id="ram-output" style="margin: 0; color: #555; background: #000; padding: 8px; border: 1px solid #222; font-size: 0.8rem; text-align: left; max-height: 120px; overflow-y: auto; white-space: pre-wrap; line-height: 1.3;">[SISTEMA EN ESPERA] Ejecuta el escáner para ver los strings en vivo...</pre>
+            <pre id="ram-output" style="margin: 0; color: #555; background: #000; padding: 8px; border: 1px solid #222; font-size: 0.8rem; text-align: left; min-height: 100px; max-height: 180px; overflow-y: auto; white-space: pre-wrap; line-height: 1.3;">[SISTEMA EN ESPERA] Ejecuta el escáner para ver los strings en vivo...</pre>
         </div>
 
         <div style="border: 2px solid #ff003c; padding: 15px; margin: 15px 0; background: #0a0002; max-width: 320px; margin-left: auto; margin-right: auto; text-align: left; box-shadow: 0 0 10px rgba(255,0,60,0.2);">
@@ -267,7 +294,7 @@ const levelsData = {
     `,
     
 10: `
-        <h1 class="glitch" data-text="FASE 10: APAGADO DE EMERGENCIA">FASE 10: APAGADO DE EMERGENCIA</h1>
+        <h1 class="glitch" data-text="FASE 10: APAGADO DE EMBENCIA">FASE 10: APAGADO DE EMERGENCIA</h1>
         <p style="color: #ff003c; font-weight: bold; animation: blink 1s infinite;">[ ALERTA MÁXIMA: PROTOCOLO DE DESTRUCCIÓN GLOBAL ACTIVO ]</p>
         
         <div style="background: rgba(255, 0, 60, 0.03); border-left: 3px solid #ff003c; padding: 10px; margin: 15px 0; font-size: 0.85rem; text-align: left; line-height: 1.4;">
@@ -286,10 +313,6 @@ const levelsData = {
 
             <p style="color: #ff003c; font-size: 1.1rem; margin: 0 0 5px 0; font-weight: bold;">TIEMPO RESTANTE PARA EL IMPACTO</p>
             <div id="countdown-timer" style="font-size: 2.5rem; color: #ff003c; font-weight: bold; font-family: monospace; letter-spacing: 2px;">01:00</div>
-            
-            <button id="sync-btn" style="background: #ff003c; color: white; border: none; padding: 6px 15px; cursor: pointer; font-family: monospace; font-weight: bold; margin-top: 10px;">
-                [ INICIAR SECUENCIA ]
-            </button>
 
             <div style="margin-top: 20px; border-top: 1px dashed #ff003c; padding-top: 15px;">
                 <button id="kill-switch-btn" disabled style="background: #222; color: #555; border: 1px solid #ff003c; padding: 12px 30px; font-size: 1.2rem; cursor: not-allowed; font-family: monospace; font-weight: bold;">
@@ -298,7 +321,7 @@ const levelsData = {
             </div>
         </div>
 
-        <p><strong>MISIÓN FINAL:</strong> El botón de autodestrucción está inhabilitado. Inicia la secuencia para activar el reloj. Luego abre el Inspector (<strong>F12</strong>), localiza el botón con el ID <code>kill-switch-btn</code>, <strong>elimina la palabra disabled</strong> de su código para revivirlo, y presiónalo antes de que el tiempo llegue a cero.</p>
+        <p><strong>MISIÓN FINAL:</strong> El botón de autodestrucción está inhabilitado. El reloj ya está corriendo. Abre el Inspector (<strong>F12</strong>), localiza el botón con el ID <code>kill-switch-btn</code>, <strong>elimina la palabra disabled</strong> de su código para revivirlo, y presiónalo antes de que el tiempo llegue a cero o serás bloqueado por 2 minutos.</p>
         
         <style>
             @keyframes blink { 50% { opacity: 0; } }
@@ -315,32 +338,37 @@ const levelsData = {
 // ejecuta la función para pintar el Nivel 1 en pantalla".
 
 // Inicializar la terminal cargando el progreso guardado
+// Inicializar la terminal cargando el progreso guardado o la introducción
 document.addEventListener("DOMContentLoaded", () => {
-    // Intentamos leer si el usuario ya tenía un nivel guardado en su navegador
     const savedLevel = localStorage.getItem('nexus_level');
     
     if (savedLevel) {
-        gameState.level = parseInt(savedLevel); // Si existe, ponemos ese nivel
+        gameState.level = parseInt(savedLevel);
+        loadLevel(gameState.level); // Si ya tenía progreso, carga su nivel correspondiente
     } else {
-        gameState.level = 1; // Si es la primera vez que entra, arranca en el 1
+        gameState.level = 1; // El progreso real internamente iniciará en 1
+        loadLevel(0); // Pero visualmente le pintamos la introducción (Fase 0)
     }
-    
-    loadLevel(gameState.level);
 });
-
+ 
 // Esta función borra el contenido viejo de la pantalla e inyecta el nuevo nivel.
 function loadLevel(levelNum) {
-    const container = document.getElementById('terminal-content'); // El contenedor de la terminal
-    const path = document.getElementById('current-path'); // El texto que simula la ruta (ej: /level_01)
+    const container = document.getElementById('terminal-content'); 
+    const path = document.getElementById('current-path');
+    const inputArea = document.querySelector('.input-area');
+ 
+    // Ocultar el validador de flags en la pantalla de presentación
+    if (inputArea) {
+        inputArea.style.display = levelNum === 0 ? 'none' : '';
+    }
     
-    // Si el nivel existe en nuestra base de datos (levelsData)...
     if (levelsData[levelNum]) {
-        container.innerHTML = levelsData[levelNum]; // Inyecta el HTML del nivel correspondiente
-        path.innerText = `/level_0${levelNum}`; // Actualiza la ruta visual en la interfaz de comandos
+        container.innerHTML = levelsData[levelNum]; 
+        path.innerText = `/level_0${levelNum}`; 
     } else {
-        // Si ya no hay más niveles (pasó el nivel 10), muestra el mensaje de victoria total.
         container.innerHTML = "<h1 style='color: red;'>ROOT ACCESS GRANTED. SYSTEM COMPROMISED.</h1>";
     }
+    
     if (levelNum === 3) {
         triggerIntercept();
     }
@@ -351,7 +379,24 @@ function loadLevel(levelNum) {
             console.log("Cookie user_role=guest generada automáticamente.");
         }
     }
+ 
+    // AUTOMATIZACIÓN NIVEL 10: Dispara el reloj en vivo sin presionar botones
+    if (levelNum === 10) {
+        setTimeout(() => {
+            if (typeof executeAlternativeTimer === "function") {
+                executeAlternativeTimer();
+            }
+        }, 100); // Pequeño delay de 100ms para asegurar que el DOM cargó el HTML
+    }
 }
+
+
+// Función del botón de inicio en la pantalla de presentación (Fase 0)
+window.startInfiltration = function() {
+    gameState.level = 1;
+    localStorage.setItem('nexus_level', 1);
+    loadLevel(1);
+};
 
 // Esta función se ejecuta cuando el usuario hace clic en el botón "EXECUTE"
 function verifyFlag() {
@@ -624,7 +669,7 @@ function executeRAMScan() {
         if (index < lines.length) {
             // Camuflaje sutil de las líneas clave
             if (lines[index].includes("7492") || lines[index].includes("N3XUS_4DM1N")) {
-                output.innerHTML += `<span style="color: #c5c58d; font-weight: bold;">${lines[index]}</span>\n`;
+                output.innerHTML += `<span style="color: #555555; font-weight: bold;">${lines[index]}</span>\n`;
             } else {
                 output.innerHTML += `<span style="color: #555555;">${lines[index]}</span>\n`;
             }
@@ -775,7 +820,6 @@ function executeAlternativeLockout() {
     }, 1000);
 }
 
-// Pantalla de la Victoria Definitiva - Diseño Épico de Celebración
 function executeFinalExplosionAlternative() {
     clearTimeout(phase10Timeout);
     clearInterval(checkDisabledInterval);
@@ -829,17 +873,4 @@ function executeFinalExplosionAlternative() {
             if (inputArea) inputArea.style.display = 'none';
         }
     }, 150);
-}
-//Borrar 
-function goToLevel(targetLevel) {
-    console.log("Forzando salto al nivel:", targetLevel);
-    
-    gameState.level = targetLevel; // Cambia el nivel en la memoria del juego
-    localStorage.setItem('nexus_level', targetLevel); // Lo guarda en el navegador para que no se borre
-    
-    // Limpia inputs y mensajes viejos para que no estorben
-    document.getElementById('flag-input').value = '';
-    document.getElementById('system-msg').innerHTML = '';
-    
-    loadLevel(targetLevel); // Carga el nivel visualmente
 }
