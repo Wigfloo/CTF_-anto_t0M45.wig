@@ -15,7 +15,7 @@ const gameState = {
         "25144928d11a1b28ecdc54eb2ccdbaa57d7e59c251cc430d5a8071455b96d383", // Hash del Nivel 5 
         "9b56811afcf7b190610e681c71b79277419e87e5fee385aa5a59f65b66338b5a", // Hash del nivel 6
         "a0b9d2d6e4c38d5642d0c8edf4d023cc1f5dbb934d5fd3de410643a4140365b8", // Hash del nivel 7
-        "49578f80083b8c704fc4fb2c84cb90707f281bedc8c9ef5c646fa384def863be", // Hash del nivel 8
+        "6b851b9a12eddbd992e74c1d771fb141d5ff03c82d03507ae88953bb899cff42", // Hash del nivel 8
         "3362880e4c7b5ecabd696c7c8cd9dc85970feda92a1db8e86db95f9b3d5df686", // Hash del nivel 9
         "46abcb5231250de7b47af1e5ebcedca29e20b640b721e191aa1924e3346f2cad", // Hash del nivel 10
 
@@ -35,7 +35,7 @@ const levelsData = {
 
     
 0: `
-        <h1 class="glitch" data-text="[ BIENVENIDO AL SISTEMA NEXUS ]">[ BIENVENIDO AL SISTEMA NEXUS ]</h1>
+        <h1 class="glitch" data-text="[ BIENVENIDO A NETLOST ]">[ BIENVENIDO AL SISTEMA NETLOST ]</h1>
         <p style="color: #ffff00; font-weight: bold;">ALERTA DE OPERACIÓN: INFILTRACIÓN REQUERIDA</p>
         
         <div style="background: rgba(0, 255, 65, 0.02); border: 1px dashed #00FF41; padding: 15px; margin: 15px 0; font-size: 0.9rem; text-align: left; line-height: 1.5; color: white;">
@@ -248,7 +248,8 @@ const levelsData = {
             <div id="sql-output" style="margin-top: 15px; font-size: 0.85rem; font-family: monospace; text-align: center; font-weight: bold;"></div>
         </div>
 
-        <p><strong>MISIÓN:</strong> Manipula el campo de <strong>Usuario</strong> inyectando la instrucción lógica clásica <code>' OR '1'='1</code> para vulnerar el inicio de sesión y forzar al sistema a escupir el usuario oculto.</p>
+        <p><strong>MISIÓN:</strong> Manipula el campo de <strong>Usuario</strong> inyectando comandos de sql injection, hasta que uno te de la información</p>
+        <p style="color: #ffff00; font-size: 0.85rem;">[ NOTA ]: El nombre del usuario obtenido es la clave de validación es importante, no lo olvides.</p>
     `,
 
 9: `
@@ -399,6 +400,7 @@ window.startInfiltration = function() {
 };
 
 // Esta función se ejecuta cuando el usuario hace clic en el botón "EXECUTE"
+// Esta función se ejecuta cuando el usuario hace clic en el botón "EXECUTE"
 function verifyFlag() {
     // Captura el texto que el usuario escribió en la caja de texto y le borra los espacios en blanco extras.
     const input = document.getElementById('flag-input').value.trim();
@@ -407,17 +409,51 @@ function verifyFlag() {
     // Convertimos lo que el usuario escribió en un hash SHA-256 usando la librería CryptoJS.
     const inputHash = CryptoJS.SHA256(input).toString();
 
-  if (inputHash === "a5af542ed4ae9557144b79c669540d0b5026c68591836bfe9f62541d9ef50e2a" || 
+    // ==========================================================
+    // NUEVA TRAMPA DE LA FASE 9: CAPTURA DE COPIA-PEGA EN LA RAM
+    // ==========================================================
+    if (gameState.level === 9 && input === "NEXUS_4DMIN") {
+        const container = document.getElementById('terminal-content');
+        msg.innerHTML = "<span style='color: #FF003C; font-weight: bold;'>[ ¡SISTEMA COMPROMETIDO! HONEYPOT DETECTADO ]</span>";
+        
+        // Ocultamos el área de inputs para evitar más intentos
+        document.querySelector('.input-area').style.display = 'none';
+        
+        setTimeout(() => {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 10px;">
+                    <h2 style="color: #ff003c;" class="glitch" data-text="HACKED BY A CAT?">HACKED BY A CAT?</h2>
+                    <p style="color: white; font-style: italic; margin-bottom: 15px;">
+                        Has caído en un Honeypot de nivel 1. No confíes en todo lo que encuentras en los logs.
+                    </p>
+                    
+                    <img src="gato.jpeg" alt="Laughing Cat Trap" 
+                        style="max-width: 100%; height: auto; border: 2px solid #ff003c; box-shadow: 0 0 15px #ff003c; margin-bottom: 20px;">
+                    
+                    <br>
+                    <button onclick="localStorage.clear(); location.reload();" 
+                        style="background: #ff003c; color: white; border: none; padding: 10px 20px; cursor: pointer; font-family: monospace;">
+                        [ REINICIAR SISTEMA PARA INTENTAR DE NUEVO ]
+                    </button>
+                </div>
+            `;
+            msg.innerHTML = '';
+        }, 1000);
+        
+        return; // Detiene la ejecución aquí para que no valide el hash real
+    }
+
+    // ==========================================================
+    // TRAMPA ORIGINAL DEL JUEGO (Gato del nivel 1 / trampa general)
+    // ==========================================================
+    if (inputHash === "a5af542ed4ae9557144b79c669540d0b5026c68591836bfe9f62541d9ef50e2a" || 
         inputHash === "5e713b05e5272bad5c7bb7d6ff69969da4777a1de79224dd8bfa86ceca0871d2") {
         
         const container = document.getElementById('terminal-content');
         msg.innerHTML = "<span style='color: #FF003C; font-weight: bold;'>[ ¡SISTEMA COMPROMETIDO! AMENAZA DETECTADA ]</span>";
         
-        // Ocultamos el área de inputs
         document.querySelector('.input-area').style.display = 'none';
         
-        // Inyectamos la imagen del gato y el botón de reset
-        // Se agregó un delay de 1 seg para darle misterio al mensaje de arriba
         setTimeout(() => {
             container.innerHTML = `
                 <div style="text-align: center; padding: 10px;">
@@ -613,10 +649,11 @@ function executePingTool() {
     }, 600);
 }
 
-// ==========================================
-// LÓGICA DEL NIVEL 8
-// ==========================================
 
+
+// ==========================================
+// LÓGICA DEL NIVEL 8 
+// ==========================================
 function executeSQLAuth() {
     const user = document.getElementById('sql-user').value.trim();
     const output = document.getElementById('sql-output');
@@ -634,7 +671,7 @@ function executeSQLAuth() {
             <p style="margin: 5px 0;">[ SQLi BYPASS SUCCESS ]</p>
             <div style="color: white; font-weight: normal; font-size: 0.8rem; background: #111; padding: 6px; border: 1px dashed #00FF41; margin-top: 5px;">
                 Usuario de la Central Encontrado:<br>
-                <strong style="color: #00FF41; font-size: 1rem;">USTA(N3XUS_4DM1N)</strong>
+                <strong style="color: #00FF41; font-size: 1rem;">N3XUS_4DM1N</strong>
             </div>
         `;
     } else {
@@ -642,7 +679,6 @@ function executeSQLAuth() {
         output.innerHTML = "Error: Usuario o contraseña incorrectos.";
     }
 }
-
 // ==========================================
 // LÓGICA DEL NIVEL 9
 // ==========================================
@@ -656,7 +692,7 @@ function executeRAMScan() {
         "0x7FFF3A10 | MEM_ALLOC: proc_kernel_init() - STATUS: OK",
         "0x7FFF3A2C | TRÁFICO_RED: yo deberia estar durmiendo - ADDR: 192.168.1.5",
         "0x7FFF3A48 | MONITOREO: CPU Temp 47°C | Fan Speed 2400 RPM",
-        "0x7FFF3A64 | COMPU_LOG: SESIÓN ACTIVA DETECTADA -> [User: N3XUS_4DM1N]",
+        "0x7FFF3A64 | COMPU_LOG: SESIÓN ACTIVA DETECTADA -> [User: NEXUS_4DMIN]",
         "0x7FFF3A80 | STRING_STACK: PASSWORD_PIN -> 7492",
         "0x7FFF3AB6 | SYS_ALERT: subsidien los tokens por favor o paila",
         "0x7FFF3B12 | MEM_ALLOC: clearing_cache_buffer... success",
